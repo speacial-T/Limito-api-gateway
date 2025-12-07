@@ -11,7 +11,7 @@ spring:
         - id: user-service
           uri: http://localhost:19092
           predicates:
-            - Path=/api/v1/users/**
+            - Path=/api/v1/auth/**
           filters:
           #  - StripPrefix=1   # 필요하면 주석 해제
 
@@ -28,11 +28,13 @@ eureka:
   instance:
     prefer-ip-address: true
 
-service:
-  jwt:
-    secret-key: ${secret-key}
 
 logging:
   level:
     com.netflix.discovery: DEBUG
     org.springframework.cloud.netflix.eureka: DEBUG
+
+security:
+  jwt:
+    secret-key: "N2Y5ZDgzNzMwZTU1ODFkMGNhNjE4YzY2YmI3M2ZlYmQ="
+    access-token-expire-minutes: 30

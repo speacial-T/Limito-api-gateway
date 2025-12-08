@@ -63,10 +63,9 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 
 	// 기본 API
 	private boolean isPublicPath(String path) {
-		return path.startsWith("/api/v1/users/signup")  // 일반 회원가입
-			|| path.startsWith("/api/v1/users/admin/signup") // 관리자 회원가입
-			|| path.startsWith("/api/v1/users/login")  // 로그인
-			|| path.startsWith("/actuator/health");
+		return path.startsWith("/api/v1/auth/signup")
+			|| path.startsWith("/api/v1/auth/signup/admin")
+			|| path.startsWith("/api/v1/auth/login");
 	}
 
 	@Override

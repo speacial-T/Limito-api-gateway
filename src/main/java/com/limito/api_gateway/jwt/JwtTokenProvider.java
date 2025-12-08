@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
+import com.limito.common.exception.AppException;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;
@@ -29,11 +31,9 @@ public class JwtTokenProvider {
 
 			return new AuthUserInfo(userId, email, role);
 		} catch (ExpiredJwtException e) {
-			throw com.limito.common.exception.AppException.of(
-				HttpStatus.UNAUTHORIZED, "ACCESS_TOKEN_EXPIRED");
+			throw AppException.of(HttpStatus.UNAUTHORIZED, "ACCESS_TOKEN_EXPIRED");
 		} catch (JwtException | IllegalArgumentException e) {
-			throw com.limito.common.exception.AppException.of(
-				HttpStatus.UNAUTHORIZED, "INVALID_ACCESS_TOKEN");
+			throw AppException.of(HttpStatus.UNAUTHORIZED, "INVALID_ACCESS_TOKEN");
 		}
 	}
 }

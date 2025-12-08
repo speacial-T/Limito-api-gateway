@@ -38,6 +38,7 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 
 		String token = authHeader.substring(7);
 
+		// JWT 검증 및 파싱
 		AuthUserInfo userInfo;
 		try {
 			userInfo = jwtTokenProvider.parseAccessToken(token);
@@ -58,7 +59,6 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 			.build();
 
 		return chain.filter(mutatedExchange);
-		// 다른 필터보다 앞에서 올림
 	}
 
 	// 기본 API

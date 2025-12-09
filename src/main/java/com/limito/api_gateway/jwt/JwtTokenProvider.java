@@ -26,10 +26,9 @@ public class JwtTokenProvider {
 				.getBody();
 
 			Long userId = Long.valueOf(claims.getSubject());
-			String email = claims.get("X-User-Email", String.class);
 			String role = claims.get("X-User-Role", String.class);
 
-			return new AuthUserInfo(userId, email, role);
+			return new AuthUserInfo(userId, role);
 		} catch (ExpiredJwtException e) {
 			throw AppException.of(HttpStatus.UNAUTHORIZED, "ACCESS_TOKEN_EXPIRED");
 		} catch (JwtException | IllegalArgumentException e) {

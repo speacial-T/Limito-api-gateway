@@ -6,6 +6,8 @@ spring:
     import: optional:file:./.env[.properties]
   application:
     name: api-gateway
+  main:
+    web-application-type: reactive
 
   cloud:
     gateway:
@@ -59,7 +61,7 @@ logging:
     org.springframework.cloud.netflix.eureka: DEBUG
 
 security:
-  master-key: ${SECURITY_MASTER_KEY}
+  master-key: "limito-master-1234"
   jwt:
-    secret-key: ${SECURITY_JWT_SECRET_KEY}
+    secret-key: "N2Y5ZDgzNzMwZTU1ODFkMGNhNjE4YzY2YmI3M2ZlYmQ="
     access-token-expire-minutes: ${SECURITY_JWT_ACCESS_TOKEN_EXPIRE_MINUTES:30}

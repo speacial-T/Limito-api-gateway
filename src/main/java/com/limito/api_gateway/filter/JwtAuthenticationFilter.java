@@ -10,8 +10,8 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.server.ServerWebExchange;
 
 import com.limito.api_gateway.jwt.AuthUserInfo;
-import com.limito.api_gateway.jwt.JwtAuthenticationException;
 import com.limito.api_gateway.jwt.JwtTokenProvider;
+import com.limito.common.exception.AppException;
 
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
@@ -42,7 +42,7 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 		AuthUserInfo userInfo;
 		try {
 			userInfo = jwtTokenProvider.parseAccessToken(token);
-		} catch (JwtAuthenticationException e) {
+		} catch (AppException e) {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
 		}
 
@@ -65,11 +65,20 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 	private boolean isPublicPath(String path) {
 		return path.startsWith("/api/v1/auth/signup")
 			|| path.startsWith("/api/v1/auth/signup/admin")
-			|| path.startsWith("/api/v1/auth/login");
+			|| path.startsWith("/api/v1/auth/login")
+			|| path.startsWith("/api/v1/resell-products?category=&page=&size=&sort=")
+			|| path.startsWith("/api/v1/resell-products/{resellProductId}")
+			|| path.startsWith("/api/v1/categories")
+			|| path.startsWith("/api/v1/limited-products/all/ranks?category=&keyword=")
+			|| path.startsWith("/api/v1/limited-products/{limitedProductOptionId}")
+			|| path.startsWith("/api/v1/limited-products/all?category=")
+			|| path.startsWith("/internal/v1/limited-products/{limitedProductId}/open")
+			|| path.startsWith("/api/v1/limited-products/all?categoryId=")
+			|| path.startsWith("/api/v1/limited-products/all/ranks?category=&page=1&size=20&sort=name,asc");
 	}
 
 	@Override
 	public int getOrder() {
-		return -10;
+		return Ordered.HIGHEST_PRECEDENCE;
 	}
 }

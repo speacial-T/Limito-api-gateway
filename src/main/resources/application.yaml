@@ -61,7 +61,7 @@ logging:
     org.springframework.cloud.netflix.eureka: DEBUG
 
 security:
-  master-key: "limito-master-1234"
+  master-key: ${SECURITY_MASTER_KEY}
   jwt:
-    secret-key: "N2Y5ZDgzNzMwZTU1ODFkMGNhNjE4YzY2YmI3M2ZlYmQ="
-    access-token-expire-minutes: ${SECURITY_JWT_ACCESS_TOKEN_EXPIRE_MINUTES:30}
+    secret-key: ${SECURITY_JWT_SECRET_KEY}
+    access-token-expire-minutes: 30

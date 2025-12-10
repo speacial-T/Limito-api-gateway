@@ -35,7 +35,13 @@ dependencies {
     implementation 'io.jsonwebtoken:jjwt-impl:0.12.5'
     implementation 'io.jsonwebtoken:jjwt-jackson:0.12.5'
 
-    implementation 'com.github.speacial-T:Limito-common:v1.1.2'
+    implementation('com.github.speacial-T:Limito-common:v1.2.2') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-data-jpa'
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-jdbc'
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-web'
+    }
+    implementation 'org.springframework.data:spring-data-commons'
+
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.cloud:spring-cloud-starter-gateway'

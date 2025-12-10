@@ -6,6 +6,8 @@ spring:
     import: optional:file:./.env[.properties]
   application:
     name: api-gateway
+  main:
+    web-application-type: reactive
 
   cloud:
     gateway:
@@ -62,4 +64,4 @@ security:
   master-key: ${SECURITY_MASTER_KEY}
   jwt:
     secret-key: ${SECURITY_JWT_SECRET_KEY}
-    access-token-expire-minutes: ${SECURITY_JWT_ACCESS_TOKEN_EXPIRE_MINUTES:30}
+    access-token-expire-minutes: 30

@@ -36,7 +36,7 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 			throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "MISSING AUTHORIZATION HEADER");
 		}
 
-		String token = authHeader.substring(7);
+		String token = authHeader.substring(7).trim();
 
 		// JWT 검증 및 파싱
 		AuthUserInfo userInfo;

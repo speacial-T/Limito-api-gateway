@@ -65,15 +65,9 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 		return path.startsWith("/api/v1/auth/signup")
 			|| path.startsWith("/api/v1/auth/signup/admin")
 			|| path.startsWith("/api/v1/auth/login")
-			|| path.startsWith("/api/v1/resell-products?category=&page=&size=&sort=")
-			|| path.startsWith("/api/v1/resell-products/{resellProductId}")
+			|| path.startsWith("/api/v1/resell-product/view")
 			|| path.startsWith("/api/v1/categories")
-			|| path.startsWith("/api/v1/limited-products/all/ranks?category=&keyword=")
-			|| path.startsWith("/api/v1/limited-products/{limitedProductOptionId}")
-			|| path.startsWith("/api/v1/limited-products/all?category=")
-			|| path.startsWith("/internal/v1/limited-products/{limitedProductId}/open")
-			|| path.startsWith("/api/v1/limited-products/all?categoryId=")
-			|| path.startsWith("/api/v1/limited-products/all/ranks?category=&page=1&size=20&sort=name,asc");
+			|| path.startsWith("/api/v1/limited-products/view");
 	}
 
 	@Override

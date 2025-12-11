@@ -20,25 +20,22 @@ spring:
         - id: limited-product-service
           uri: lb://limited-product-service
           predicates:
-            - Path=/api/v1/limited-products/**
-            - Path=/internal/v1/limited-products/**
+            - Path=/api/v1/limited-products/**, /internal/v1/limited-products/**
           filters:
         - id: resell-product-service
           uri: lb://resell-product-service
           predicates:
-            - Path=/api/v1/resell-products
-            - Path=/internal/v1/resell-products
+            - Path=/api/v1/resell-products, /internal/v1/resell-products
           filters:
         - id: order-service
           uri: lb://order-service
           predicates:
-            - Path=/api/v1/orders
+            - Path=/api/v1/orders, /internal/v1/orders/**
           filters:
         - id: payments-service
           uri: lb://payments-service
           predicates:
-            - Path=/api/v1/payments/**
-            - Path=/internal/v1/payments/**
+            - Path=/api/v1/payments/**, /internal/v1/payments/**
           filters:
 
       discovery:

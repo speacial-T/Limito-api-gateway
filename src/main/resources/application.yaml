@@ -15,7 +15,7 @@ spring:
         webflux:
           routes:
             - id: user-service
-              uri: http://localhost:19092
+              uri: lb://user-service
               predicates:
                 - Path=/api/v1/auth/**, /api/v1/user/**, /internal/v1/user/**
               # filters가 없으면 아예 생략해도 됨
@@ -48,7 +48,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:19090/eureka/
+      defaultZone: ${EUREKA_URL:http://localhost:19090/eureka/}
     fetch-registry: true
   instance:
     prefer-ip-address: true

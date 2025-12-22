@@ -20,6 +20,9 @@ jobs:
       - name: 파일 전송을 위한 디렉토리 생성
         run: mkdir ./Limito-gateway
 
+      - name: Gradle Wrapper 실행 권한 부여
+        run: chmod +x gradlew
+
       - name: Gradle Build
         run: ./gradlew clean build -x test
 
